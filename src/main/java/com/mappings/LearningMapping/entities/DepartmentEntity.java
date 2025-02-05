@@ -22,8 +22,11 @@ public class DepartmentEntity {
     @OneToOne
     @JoinColumn(name = "department_manager")
     private EmployeeEntity manager;
-    @OneToMany(mappedBy = "workerDepartment")
+    @OneToMany(mappedBy = "workerDepartment",fetch = FetchType.LAZY)
     private Set<EmployeeEntity> worker;
+
+    @ManyToMany(mappedBy = "freelanceDepartment")
+    private Set<EmployeeEntity> freelancers;
 
     @Override
     public boolean equals(Object o) {
